@@ -10,23 +10,24 @@
 </head>
 <body>
 
-<section id="banner" class="py-5 container text-center">
-    <div class="text-center container">
-        <img src="Banner web CBM.jpg" alt="">
+<!-- Banner Section -->
+<section id="banner" class="py-5 text-center">
+    <div class="container">
+        <img src="Banner web CBM.jpg" alt="Banner Corredor Biológico Mesoamericano" class="img-fluid">
     </div>
 </section>
 
-<!-- Section 1: Introduction -->
-<section class="py-5 text-jusify">
+<!-- Introduction Section -->
+<section class="py-5">
     <div class="container">
-        <h1 class="text-center">CORREDOR BIOLOGICO MESOAMERICANO</h1>
-        <p class="lead">
+        <h1 class="text-center mb-4">Corredor Biológico Mesoamericano</h1>
+        <p class="lead text-justify">
             Es una iniciativa coordinada de conservación para mantener la conectividad entre los ecosistemas de Norteamérica y los de Suramérica a través de distintos espacios naturales en el Istmo Centroamericano y del Caribe.
         </p>
-        <p>
+        <p class="text-justify">
             Actualmente, se cuenta con el Plan Director CBM2030 con el objetivo de brindar líneas de acción para articular y atender las prioridades comunes relacionadas con la biodiversidad y que pueden ser abordadas a través de soluciones compartidas desde el ámbito regional, con el fin de complementar los esfuerzos que ya realizan los países a nivel nacional.
         </p>
-        <p>
+        <p class="text-justify">
             En el presente sitio se enlistan los diferentes instrumentos realizados en el marco del Plan Director como insumos para contribuir a la preservación de la biodiversidad:
         </p>
         <ul class="list-unstyled">
@@ -37,16 +38,16 @@
     </div>
 </section>
 
-<!-- Section 2: Document Repository -->
+<!-- Document Repository Section -->
 <section class="py-5">
     <div class="container">
         <h2 class="text-center mb-4">Caja de Herramientas</h2>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4 mb-4">
                 <h4>Selecciona un país</h4>
                 <ul class="list-group country-list" id="countryList"></ul>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-8 mb-4">
                 <h4>Documentos</h4>
                 <ul class="list-group document-list" id="documentList"></ul>
             </div>
@@ -62,9 +63,9 @@
                 <h5 class="modal-title" id="documentModalLabel">Detalles del documento</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body text-center">
                 <div class="document-details">
-                    <img src="" id="documentImage" alt="Document Cover" class="mb-3">
+                    <img src="" id="documentImage" alt="Document Cover" class="img-fluid mb-3">
                     <h5 id="documentTitle"></h5>
                     <p id="documentDescription"></p>
                     <a href="#" id="documentDownloadLink" class="btn btn-primary" download>Descargar</a>
@@ -88,11 +89,10 @@
     </div>
 </div>
 
-
-<!-- Section 3: External Links -->
-<section class="py-5 text-center">
+<!-- External Links Section -->
+<section class="py-5">
     <div class="container">
-        <h2>Recursos Adicionales</h2>
+        <h2 class="text-center">Recursos Adicionales</h2>
         <div class="d-flex flex-column flex-md-row justify-content-center mt-4">
             <a href="https://cooperasur.org/negocios-y-ambiente/" class="btn btn-outline-primary mx-2 mb-3" target="_blank">Negocios y Ambiente</a>
             <a href="https://cooperasur.org/vias-amigables-con-la-vida-silvestre/" class="btn btn-outline-primary mx-2 mb-3" target="_blank">Vías Amigables con la Vida Silvestre</a>
@@ -101,6 +101,7 @@
     </div>
 </section>
 
+<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="scripts.js"></script>
 </body>

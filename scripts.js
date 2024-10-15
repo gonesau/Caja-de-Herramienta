@@ -129,12 +129,39 @@ let copyToast = new bootstrap.Toast(document.getElementById('copyToast'));
 function loadCountries() {
     for (const country in documents) {
         const li = document.createElement('li');
-        li.classList.add('list-group-item');
-        li.innerText = country;
+        li.classList.add('list-group-item', 'd-flex', 'align-items-center');
+
+        // Crear la imagen de la bandera
+        const flagImg = document.createElement('img');
+        const flagFileName = getFlagFileName(country); // Usa la función para obtener el nombre del archivo
+        flagImg.src = `img/${flagFileName}`; // Cambia esta ruta a la ubicación de tus imágenes
+        flagImg.alt = `${country} flag`;
+        flagImg.style.width = '30px'; // Ajusta el tamaño según sea necesario
+        flagImg.style.height = 'auto'; // Mantiene la proporción
+        flagImg.style.marginRight = '10px'; // Ajusta el valor según sea necesario
+
+
+        li.appendChild(flagImg);
+        li.appendChild(document.createTextNode(` ${country} `)); // Espacio entre la imagen y el texto
         li.onclick = () => loadDocuments(country, li);
         countryList.appendChild(li);
     }
 }
+
+
+function getFlagFileName(country) {
+    return country
+        .toLowerCase()
+        .replace(/á/g, 'a')
+        .replace(/é/g, 'e')
+        .replace(/í/g, 'i')
+        .replace(/ó/g, 'o')
+        .replace(/ú/g, 'u')
+        .replace(/ñ/g, 'n')
+        .replace(/ /g, '_') + '.png'; // Reemplazar espacios con guiones bajos
+}
+
+
 
 function loadDocuments(country, countryElement) {
     documentList.innerHTML = ''; // Clear document list

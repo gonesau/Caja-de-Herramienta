@@ -1,0 +1,61 @@
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+h1, h2, h4 {
+    color: #007bff;
+}
+
+.country-list, .document-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.country-list .list-group-item.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.country-list .list-group-item:hover, .document-list .list-group-item:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+.document-details img {
+    max-height: 500px; /* Limita la altura máxima a 500 px */
+    width: auto; /* Mantiene la proporción de la imagen */
+    display: block;
+    margin-left: auto;
+    margin-right: auto; /* Asegura que la imagen esté centrada */
+}
+
+.modal-dialog-centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-outline-primary {
+    border-color: #007bff;
+    color: #007bff;
+}
+
+.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+section {
+    padding: 60px 0;
+}
+
+ul.list-unstyled li {
+    font-size: 1.1em;
+    margin-bottom: 0.5em;
+}
+
+.d-flex .btn {
+    flex-grow: 1;
+}

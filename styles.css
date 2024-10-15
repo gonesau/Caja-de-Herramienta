@@ -13,6 +13,13 @@ h1, h2, h4 {
     overflow-y: auto;
 }
 
+#banner img {
+    width: 100%;
+    height: auto;
+    margin: 0%;
+    padding: 0%;
+}
+
 .country-list .list-group-item.active {
     background-color: #007bff;
     color: white;

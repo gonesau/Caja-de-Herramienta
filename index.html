@@ -1,108 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Corredor Biológico Mesoamericano</title>
+    <title>Repositorio de Documentos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.10.5/viewer.min.css">
     <link rel="stylesheet" href="styles.css">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
-<!-- Banner Section -->
-<section id="banner" class="py-5 text-center">
-    <div class="container">
-        <img src="Banner web CBM.jpg" alt="Banner Corredor Biológico Mesoamericano" class="img-fluid">
-    </div>
-</section>
+<!-- Banner -->
+<div class="container-fluid p-0">
+    <img src="https://proyectomesoamerica.org/images/Biblioteca/Banner-Biblioteca.jpg" alt="Banner" class="img-fluid w-100">
+</div>
 
-<!-- Introduction Section -->
-<section class="py-5">
-    <div class="container">
-        <h1 class="text-center mb-4">Corredor Biológico Mesoamericano</h1>
-        <p class="lead text-justify">
-            Es una iniciativa coordinada de conservación para mantener la conectividad entre los ecosistemas de Norteamérica y los de Suramérica a través de distintos espacios naturales en el Istmo Centroamericano y del Caribe.
-        </p>
-        <p class="text-justify">
-            Actualmente, se cuenta con el Plan Director CBM2030 con el objetivo de brindar líneas de acción para articular y atender las prioridades comunes relacionadas con la biodiversidad y que pueden ser abordadas a través de soluciones compartidas desde el ámbito regional, con el fin de complementar los esfuerzos que ya realizan los países a nivel nacional.
-        </p>
-        <p class="text-justify">
-            En el presente sitio se enlistan los diferentes instrumentos realizados en el marco del Plan Director como insumos para contribuir a la preservación de la biodiversidad:
-        </p>
-        <ul class="list-unstyled">
-            <li>1. Plan Director CBM2030</li>
-            <li>2. Caja de Herramientas</li>
-            <li>3. Gestión del conocimiento: Cursos (COOPERASÜR)</li>
-        </ul>
-    </div>
-</section>
-
-<!-- Document Repository Section -->
-<section class="py-5">
-    <div class="container">
-        <h2 class="text-center mb-4">Caja de Herramientas</h2>
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <h4>Selecciona un país</h4>
-                <ul class="list-group country-list" id="countryList"></ul>
+<div class="container mt-5">
+    <div class="row">
+        <!-- Columna de Filtros -->
+        <div class="col-md-3">
+            <div class="filter-section mb-4">
+                <h5>Categorías</h5>
+                <ul id="categories" class="list-group">
+                    <li data-category="all" class="list-group-item active">Todos</li>
+                    <li data-category="Institucional" class="list-group-item">Institucional</li>
+                    <li data-category="Economico" class="list-group-item">Económico</li>
+                    <li data-category="Socioambiental" class="list-group-item">Socioambiental</li>
+                </ul>
             </div>
-            <div class="col-md-8 mb-4">
-                <h4>Documentos</h4>
-                <ul class="list-group document-list" id="documentList"></ul>
+            
+            <div class="filter-section">
+                <h5>Países</h5>
+                <ul id="countries" class="list-group">
+                    <li data-country="all" class="list-group-item active">Todos</li>
+                    <li data-country="MX" class="list-group-item">México</li>
+                    <li data-country="GT" class="list-group-item">Guatemala</li>
+                    <li data-country="HN" class="list-group-item">Honduras</li>
+                    <li data-country="SV" class="list-group-item">El Salvador</li>
+                    <li data-country="NI" class="list-group-item">Nicaragua</li>
+                    <li data-country="CR" class="list-group-item">Costa Rica</li>
+                    <li data-country="PA" class="list-group-item">Panamá</li>
+                    <li data-country="CO" class="list-group-item">Colombia</li>
+                    <li data-country="RD" class="list-group-item">Rep. Dominicana</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Columna principal -->
+        <div class="col-md-9">
+            <!-- Buscador y filtros activos -->
+            <div class="search-container mb-4">
+                <input type="text" id="searchInput" class="form-control" placeholder="Buscar documento...">
+                <div id="activeFilters" class="mt-2"></div>
+            </div>
+
+            <!-- Contador de resultados -->
+            <div id="resultsCounter" class="mb-3 text-muted"></div>
+
+            <!-- Lista de documentos -->
+            <div id="documents-list">
+                <!-- Aquí se generarán los documentos dinámicamente -->
+            </div>
+
+            <!-- Loading spinner -->
+            <div id="loadingSpinner" class="text-center my-5" style="display: none;">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Cargando...</span>
+                </div>
+                <p class="mt-2">Cargando documentos...</p>
             </div>
         </div>
     </div>
-</section>
+</div>
 
-<!-- Modal for Document Details -->
-<div class="modal fade" id="documentModal" tabindex="-1" aria-labelledby="documentModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+<!-- Modal para vista previa -->
+<div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="previewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="documentModalLabel">Detalles del documento</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="previewModalLabel">Vista Previa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body text-center">
-                <div class="document-details">
-                    <img src="" id="documentImage" alt="Document Cover" class="img-fluid mb-3">
-                    <h5 id="documentTitle"></h5>
-                    <p id="documentDescription"></p>
-                    <a href="#" id="documentDownloadLink" class="btn btn-primary" download>Descargar</a>
-                    <button id="copyLinkButton" class="btn btn-secondary">Copiar enlace</button>
-                </div>
+                <div id="pdfPreview" class="w-100"></div>
+                <img id="imagePreview" class="img-fluid" style="display: none;" alt="Vista previa del documento">
+            </div>
+            <div class="modal-footer">
+                <a id="downloadBtn" href="#" download class="btn btn-success">Descargar</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Toast for Copy Confirmation -->
-<div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer">
-    <div id="copyToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-            <strong class="me-auto">Confirmación</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-            El enlace ha sido copiado al portapapeles.
-        </div>
-    </div>
+<!-- Alerta de confirmación para copiar enlace -->
+<div id="copyAlert" class="alert alert-success fixed-top text-center" style="display: none;" role="alert">
+    ¡Enlace copiado al portapapeles!
 </div>
 
-<!-- External Links Section -->
-<section class="py-5">
-    <div class="container">
-        <h2 class="text-center">Gestión del conocimiento: Cursos</h2>
-        <div class="d-flex flex-column flex-md-row justify-content-center mt-4">
-            <a href="https://cooperasur.org/negocios-y-ambiente/" class="btn btn-outline-primary mx-2 mb-3" target="_blank">Negocios y Ambiente</a>
-            <a href="https://cooperasur.org/vias-amigables-con-la-vida-silvestre/" class="btn btn-outline-primary mx-2 mb-3" target="_blank">Vías Amigables con la Vida Silvestre</a>
-            <a href="https://cooperasur.org/zoocria-de-mariposas/" class="btn btn-outline-primary mx-2 mb-3" target="_blank">Zoocría de Mariposas</a>
-        </div>
-    </div>
-</section>
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="scripts.js"></script>
+<!-- Librerías JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.10.5/viewer.min.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

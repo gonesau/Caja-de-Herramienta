@@ -1,219 +1,438 @@
-const documents = {
-    "Guatemala": [
-        {
-            title: "Aporte de las mujeres, pueblos indígenas y comunidades locales",
-            description: "Elaborado por el Consejo Nacional de Áreas Protegidas de Guatemala, este documento aborda la importancia de proteger el conocimiento tradicional y promover la conservación de la biodiversidad en el país, reconociendo el papel fundamental de las mujeres, pueblos indígenas y comunidades locales en la gestión sostenible de los recursos naturales.",
-            image: "https://www.proyectomesoamerica.org/images/PM/2024/destacados/PEI.jpg",
-            link: "https://920-my.sharepoint.com/:b:/g/personal/o_fuentes_proyectomesoamerica_org/EZI7fXvDNgFOhE03cVvxxhcBVovRsyDL-jdYxDD59KO27Q?e=jKuCLS"
-        },
-        {
-            title: "Década Restauración de Ecosistemas NU",
-            description: "Una guía detallada que presenta la Estrategia de la Década de las Naciones Unidas sobre la Restauración de Ecosistemas. Aborda la visión, la teoría del cambio y las vías de implementación para la restauración y conservación de los recursos naturales a nivel mundial.",
-            image: "https://www.proyectomesoamerica.org/images/PM/2024/destacados/PEI.jpg",
-            link: "https://920-my.sharepoint.com/:b:/g/personal/o_fuentes_proyectomesoamerica_org/EX-6bmyFBT1Iso9qGbGnDWoBNQcEuHPwCoO_c3okDGvZgQ?e=xDza5j"
-        },
-        {
-            title: "ERAM de CCAD",
-            description: "ERAM es un plan estratégico que establece los objetivos y acciones para mejorar la calidad ambiental de la región. Se enfoca en cinco ejes transversales: fortalecimiento de capacidades, marco legal, diálogo intersectorial, investigación y tecnologías, y enfoque de género e interculturalidad.",
-            image: "https://www.proyectomesoamerica.org/images/PM/2024/destacados/PEI.jpg",
-            link: "https://920-my.sharepoint.com/:b:/g/personal/o_fuentes_proyectomesoamerica_org/EWd6UyCrliFChqNOM1HijyQBhBxPqCgDVE5wMYJn9LRcAg?e=1hzJ5z"
-        },
-        {
-            title: "Estrategia Investigación MC",
-            description: "La Estrategia Nacional para la Investigación y Manejo de los Recursos Marino-Costeros en Guatemala, proporciona información sobre los Mapas de Valoración (MdV) y establece un esquema de gobernanza para la implementación y actualización de la ENIMC.",
-            image: "https://via.placeholder.com/150",
-            link: "https://920-my.sharepoint.com/:b:/g/personal/o_fuentes_proyectomesoamerica_org/Ea2b90JNVztMtclge73_0QwBheq-0qUyrjM2OPoKqiyANA?e=PLG1Ga"
-        },
-        {
-            title: "Diagnóstico de la ZMC del Caribe",
-            description: "Un informe diagnóstico sobre la zona marino-costera del Caribe de Guatemala. Se enfoca en el diseño y desarrollo de un sistema de monitoreo, evaluación y reporte para el Componente de Adaptación al Cambio Climático del Sistema Nacional de Información sobre Cambio Climático.",
-            image: "https://via.placeholder.com/150",
-            link: "https://920-my.sharepoint.com/:b:/g/personal/o_fuentes_proyectomesoamerica_org/EeGTQpXqCzZPopcbSmjElAgB_sQzXQUd2y35vFnbTXS4Zw?e=KU0oi1"
-        }
-    ],
-    "El Salvador": [
-        {
-            title: "Programa Nacional de Conservación de Caimán y Cocodrilo",
-            description: "Desarrollado por el Ministerio de Medio Ambiente y Recursos Naturales de El Salvador, este programa tiene como objetivo la conservación de las poblaciones de caimán y cocodrilo, así como sus hábitats, con la participación de actores clave de la sociedad.",
-            image: "https://via.placeholder.com/150",
-            link: "https://example.com/caiman-cocodrilo.pdf"
-        },
-        {
-            title: "Programa Nacional de Conservación de Cetáceos",
-            description: "El documento aborda la conservación de los cetáceos en El Salvador, enfocado en investigación científica, monitoreo, atención de varamiento, turismo responsable, educación y gobernanza para la conservación.",
-            image: "https://via.placeholder.com/150",
-            link: "https://example.com/cetaceos.pdf"
-        },
-        {
-            title: "Programa Nacional de Conservación de Felinos",
-            description: "Una iniciativa para la conservación de especies de felinos en El Salvador. Se basa en la generación de conocimiento, sensibilización de la población, promoción de sellos verdes y educación sobre la importancia de la conservación de felinos.",
-            image: "https://via.placeholder.com/150",
-            link: "https://example.com/felinos.pdf"
-        }
-    ],
-    "República Dominicana": [
-        {
-            title: "Guía restauración de ecosistemas RD",
-            description: "Desarrollado por el Ministerio de Medio Ambiente y Recursos Naturales de República Dominicana, este documento recopila experiencias de restauración ecológica implementadas en el país, abarcando diversos tipos de ecosistemas como humedales, ecosistemas terrestres y cuencas hidrográficas.",
-            image: "https://via.placeholder.com/150",
-            link: "https://example.com/restauracion-rd.pdf"
-        },
-        {
-            title: "Ley Forestal",
-            description: "Ley Sectorial Forestal de República Dominicana. Regula y promueve el manejo forestal sostenible, conservación, producción, industrialización y comercialización de los recursos forestales, garantizando la sostenibilidad a largo plazo.",
-            image: "https://via.placeholder.com/150",
-            link: "https://example.com/ley-forestal.pdf"
-        },
-        {
-            title: "Ley Sectorial Biodiversidad",
-            description: "Ley publicada en el Diario Oficial de República Dominicana. Detalla disposiciones sobre la formulación de políticas, importancia estratégica de la biodiversidad, investigación científica, y control de especies exóticas invasoras.",
-            image: "https://via.placeholder.com/150",
-            link: "https://example.com/ley-biodiversidad.pdf"
-        },
-        {
-            title: "Ley 202-04 Ley Sectorial de Áreas Protegidas",
-            description: "Garantiza la conservación y uso sostenible de las áreas protegidas en República Dominicana. Promueve la cooperación internacional y adopción de incentivos para la conservación.",
-            image: "https://via.placeholder.com/150",
-            link: "https://example.com/ley-areas-protegidas.pdf"
-        }
-    ],
-    "Nicaragua": [
-        {
-            title: "Iguana Verde",
-            description: "Un manual sobre el manejo en cautiverio de la Iguana Verde. Promueve la conservación y el uso responsable de esta especie para mejorar los medios de vida de las comunidades locales.",
-            image: "https://via.placeholder.com/150",
-            link: "https://example.com/iguana-verde.pdf"
-        },
-        {
-            title: "Manual de Buenas Prácticas Ambientales",
-            description: "Este documento aborda buenas prácticas ambientales para prevenir incendios forestales en áreas protegidas de Nicaragua. Proporciona estrategias de educación, comunicación y acciones concretas para reducir el riesgo de incendios.",
-            image: "https://via.placeholder.com/150",
-            link: "https://example.com/manual-ambiental.pdf"
-        },
-        {
-            title: "Manual de Murciélagos del Parque Nacional Volcán Masaya",
-            description: "Un informe técnico sobre las diversas especies de murciélagos que habitan en el Parque Nacional Volcán Masaya, destacando su importancia ecológica.",
-            image: "https://via.placeholder.com/150",
-            link: "https://example.com/murcielagos-masaya.pdf"
-        },
-        {
-            title: "Manual de Demarcación Física de Áreas Protegidas",
-            description: "Proporciona especificaciones técnicas y procedimientos para la instalación de señalización y mojones en áreas protegidas de Nicaragua, promoviendo la conservación y gestión ambiental.",
-            image: "https://via.placeholder.com/150",
-            link: "https://example.com/demarcacion-areas.pdf"
-        }
-    ],
-    "Panamá": [
-        {
-            title: "Estrategia Nacional de Biodiversidad",
-            description: "Documento que menciona la situación de la Diversidad Biológica de Panamá, con estrategias de acción para la conservación de la biodiversidad en el país.",
-            image: "https://via.placeholder.com/150",
-            link: "https://example.com/estrategia-biodiversidad.pdf"
-        },
-        {
-            title: "Atlas Ambiental",
-            description: "Este documento contiene información cartográfica y ambiental oficial de Panamá, proporcionando un instrumento de análisis multivariable para la toma de decisiones sobre conservación.",
-            image: "https://via.placeholder.com/150",
-            link: "https://example.com/atlas-ambiental.pdf"
-        }
-    ]
+// Configuración de PDF.js
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js';
+
+// Array de documentos simulados con su categoría, país, imagen y descripción
+const documents = [
+    { 
+        name: "Test 1", 
+        file: "docs/doc1.pdf", 
+        category: ["Institucional"],
+        countries: ["MX", "GT"],
+        image: "img/guatemala.png",
+        description: "Acta que Institucionaliza el Proyecto Mesoamérica firmada en 2009 por los países miembros.",
+        type: "pdf"
+    },    
+    { 
+        name: "Test 2", 
+        file: "docs/doc2.pdf", 
+        category: ["Institucional"],
+        countries: ["MX", "GT"],
+        image: "img/guatemala.png",
+        description: "Acta que Institucionaliza el Proyecto Mesoamérica firmada en 2009 por los países miembros.",
+        type: "pdf"
+    },
+];
+
+// Referencias a los elementos HTML
+const documentList = document.getElementById("documents-list");
+const categories = document.getElementById("categories");
+const countries = document.getElementById("countries");
+const searchInput = document.getElementById("searchInput");
+const copyAlert = document.getElementById("copyAlert");
+const activeFilters = document.getElementById("activeFilters");
+const resultsCounter = document.getElementById("resultsCounter");
+const loadingSpinner = document.getElementById("loadingSpinner");
+const previewModal = new bootstrap.Modal(document.getElementById('previewModal'));
+const pdfPreview = document.getElementById('pdfPreview');
+const imagePreview = document.getElementById('imagePreview');
+const downloadBtn = document.getElementById('downloadBtn');
+
+// Elementos de paginación
+const paginationContainer = document.createElement("div");
+paginationContainer.classList.add("pagination", "justify-content-center", "mt-4");
+documentList.after(paginationContainer);
+
+// Variables de estado
+const ITEMS_PER_PAGE = 5;
+let currentPage = 1;
+let filteredDocuments = [];
+let currentCategory = "all";
+let currentCountry = "all";
+let searchTerm = "";
+
+// Mapeo de códigos de país a nombres completos
+const countryNames = {
+    "all": "Todos",
+    "MX": "México",
+    "GT": "Guatemala",
+    "HN": "Honduras",
+    "SV": "El Salvador",
+    "NI": "Nicaragua",
+    "CR": "Costa Rica",
+    "PA": "Panamá",
+    "CO": "Colombia",
+    "RD": "Rep. Dominicana"
 };
 
-const countryList = document.getElementById('countryList');
-const documentList = document.getElementById('documentList');
-const documentModal = new bootstrap.Modal(document.getElementById('documentModal'));
-const toastContainer = document.getElementById('toastContainer');
-let selectedCountry = null;
-let copyToast = new bootstrap.Toast(document.getElementById('copyToast'));
+// Función para generar el HTML dinámico de un documento
+function generateDocumentHTML(doc) {
+    const countryBadges = doc.countries.map(country => 
+        `<span class="badge badge-info">${countryNames[country]}</span>`
+    ).join(' ');
 
-function loadCountries() {
-    for (const country in documents) {
-        const li = document.createElement('li');
-        li.classList.add('list-group-item', 'd-flex', 'align-items-center');
+    return `
+        <div class="document-item">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="document-image">
+                        <img src="${doc.image}" alt="Portada del Documento" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h5 class="document-title">${doc.name}</h5>
+                    <p class="document-description">${doc.description}</p>
+                    <div class="document-category">
+                        <span class="font-weight-bold">Categorías:</span> 
+                        ${doc.category.map(cat => `<span class="badge badge-primary">${cat}</span>`).join(' ')}
+                    </div>
+                    <div class="document-category mt-2">
+                        <span class="font-weight-bold">Países:</span> 
+                        ${countryBadges}
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="document-actions">
+                        <button class="btn btn-info" onclick="showPreview('${doc.file}', '${doc.type}', '${doc.name}')">
+                            Vista Previa
+                        </button>
+                        <a href="${doc.file}" download class="btn btn-success" onclick="registrarEvento('${doc.name}', 'Descarga')">
+                            Descargar
+                        </a>
+                        <button class="btn btn-secondary" onclick="copyLinkToClipboard('${doc.file}')">
+                            Copiar enlace
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
 
-        // Crear la imagen de la bandera
-        const flagImg = document.createElement('img');
-        const flagFileName = getFlagFileName(country); // Usa la función para obtener el nombre del archivo
-        flagImg.src = `img/${flagFileName}`; // Cambia esta ruta a la ubicación de tus imágenes
-        flagImg.alt = `${country} flag`;
-        flagImg.style.width = '30px'; // Ajusta el tamaño según sea necesario
-        flagImg.style.height = 'auto'; // Mantiene la proporción
-        flagImg.style.marginRight = '10px'; // Ajusta el valor según sea necesario
-
-
-        li.appendChild(flagImg);
-        li.appendChild(document.createTextNode(` ${country} `)); // Espacio entre la imagen y el texto
-        li.onclick = () => loadDocuments(country, li);
-        countryList.appendChild(li);
+// Función para mostrar la vista previa del documento
+function showPreview(file, type, docName) {
+    registrarEvento(docName, 'Vista Previa');
+    
+    // Configurar el botón de descarga
+    downloadBtn.href = file;
+    downloadBtn.setAttribute('download', file.split('/').pop());
+    
+    // Mostrar el modal
+    previewModal.show();
+    
+    // Limpiar vista previa anterior
+    pdfPreview.innerHTML = '';
+    imagePreview.style.display = 'none';
+    
+    // Configurar el título del modal
+    document.getElementById('previewModalLabel').textContent = `Vista Previa: ${docName}`;
+    
+    if (type === 'pdf') {
+        // Mostrar spinner de carga
+        pdfPreview.innerHTML = '<div class="spinner-border text-primary" role="status"><span class="sr-only">Cargando...</span></div>';
+        
+        // Cargar PDF usando PDF.js
+        pdfjsLib.getDocument(file).promise.then(function(pdf) {
+            // Limpiar el contenedor
+            pdfPreview.innerHTML = '';
+            
+            // Renderizar la primera página
+            pdf.getPage(1).then(function(page) {
+                const viewport = page.getViewport({ scale: 1.0 });
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+                
+                pdfPreview.appendChild(canvas);
+                
+                page.render({
+                    canvasContext: context,
+                    viewport: viewport
+                });
+            });
+            
+            // Opcional: Renderizar más páginas si se desea
+        }).catch(function(error) {
+            pdfPreview.innerHTML = '<p class="text-danger">No se pudo cargar el PDF. Por favor, descárguelo para verlo.</p>';
+            console.error('Error al cargar PDF:', error);
+        });
+    } else {
+        // Mostrar imagen directamente
+        imagePreview.src = file;
+        imagePreview.style.display = 'block';
     }
 }
 
+// Función para crear botones de paginación
+function createPaginationButtons() {
+    const totalPages = Math.ceil(filteredDocuments.length / ITEMS_PER_PAGE);
+    paginationContainer.innerHTML = '';
 
-function getFlagFileName(country) {
-    return country
-        .toLowerCase()
-        .replace(/á/g, 'a')
-        .replace(/é/g, 'e')
-        .replace(/í/g, 'i')
-        .replace(/ó/g, 'o')
-        .replace(/ú/g, 'u')
-        .replace(/ñ/g, 'n')
-        .replace(/ /g, '_') + '.png'; // Reemplazar espacios con guiones bajos
+    if (totalPages <= 1) return;
+
+    // Botón Anterior
+    const prevButton = document.createElement('button');
+    prevButton.classList.add('btn', 'btn-outline-primary');
+    prevButton.innerHTML = '&laquo; Anterior';
+    prevButton.disabled = currentPage === 1;
+    prevButton.addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            displayDocuments();
+            window.scrollTo({ top: documentList.offsetTop - 20, behavior: 'smooth' });
+        }
+    });
+    paginationContainer.appendChild(prevButton);
+
+    // Botones de número de página
+    const maxVisiblePages = 5;
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+    if (endPage - startPage + 1 < maxVisiblePages) {
+        startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+
+    if (startPage > 1) {
+        const firstPageButton = document.createElement('button');
+        firstPageButton.classList.add('btn', 'btn-outline-primary');
+        firstPageButton.textContent = '1';
+        firstPageButton.addEventListener('click', () => {
+            currentPage = 1;
+            displayDocuments();
+            window.scrollTo({ top: documentList.offsetTop - 20, behavior: 'smooth' });
+        });
+        paginationContainer.appendChild(firstPageButton);
+
+        if (startPage > 2) {
+            const ellipsis = document.createElement('span');
+            ellipsis.classList.add('mx-2');
+            ellipsis.textContent = '...';
+            paginationContainer.appendChild(ellipsis);
+        }
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+        const pageButton = document.createElement('button');
+        pageButton.classList.add('btn', 'btn-outline-primary');
+        pageButton.textContent = i;
+        
+        if (i === currentPage) {
+            pageButton.classList.remove('btn-outline-primary');
+            pageButton.classList.add('btn-primary');
+        }
+        
+        pageButton.addEventListener('click', () => {
+            currentPage = i;
+            displayDocuments();
+            window.scrollTo({ top: documentList.offsetTop - 20, behavior: 'smooth' });
+        });
+        
+        paginationContainer.appendChild(pageButton);
+    }
+
+    if (endPage < totalPages) {
+        if (endPage < totalPages - 1) {
+            const ellipsis = document.createElement('span');
+            ellipsis.classList.add('mx-2');
+            ellipsis.textContent = '...';
+            paginationContainer.appendChild(ellipsis);
+        }
+
+        const lastPageButton = document.createElement('button');
+        lastPageButton.classList.add('btn', 'btn-outline-primary');
+        lastPageButton.textContent = totalPages;
+        lastPageButton.addEventListener('click', () => {
+            currentPage = totalPages;
+            displayDocuments();
+            window.scrollTo({ top: documentList.offsetTop - 20, behavior: 'smooth' });
+        });
+        paginationContainer.appendChild(lastPageButton);
+    }
+
+    // Botón Siguiente
+    const nextButton = document.createElement('button');
+    nextButton.classList.add('btn', 'btn-outline-primary');
+    nextButton.innerHTML = 'Siguiente &raquo;';
+    nextButton.disabled = currentPage === totalPages;
+    nextButton.addEventListener('click', () => {
+        if (currentPage < totalPages) {
+            currentPage++;
+            displayDocuments();
+            window.scrollTo({ top: documentList.offsetTop - 20, behavior: 'smooth' });
+        }
+    });
+    paginationContainer.appendChild(nextButton);
 }
 
-
-
-function loadDocuments(country, countryElement) {
-    documentList.innerHTML = ''; // Clear document list
-    if (selectedCountry) {
-        selectedCountry.classList.remove('active');
+// Función para actualizar los filtros activos mostrados
+function updateActiveFilters() {
+    let filtersHTML = '';
+    
+    if (currentCategory !== 'all') {
+        filtersHTML += `<span class="badge badge-primary">Categoría: ${currentCategory}</span>`;
     }
     
-    selectedCountry = countryElement;
-    selectedCountry.classList.add('active');
+    if (currentCountry !== 'all') {
+        filtersHTML += `<span class="badge badge-info">País: ${countryNames[currentCountry]}</span>`;
+    }
+    
+    if (searchTerm) {
+        filtersHTML += `<span class="badge badge-secondary">Búsqueda: "${searchTerm}"</span>`;
+    }
+    
+    activeFilters.innerHTML = filtersHTML || '<span class="text-muted">No hay filtros aplicados</span>';
+}
 
-    documents[country].forEach(doc => {
-        const li = document.createElement('li');
-        li.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
-        li.innerText = doc.title;
-        li.onclick = () => showDocumentDetails(doc);
-        documentList.appendChild(li);
+// Función para filtrar documentos según categoría, país y búsqueda
+function filterDocuments() {
+    loadingSpinner.style.display = 'block';
+    documentList.innerHTML = '';
+    
+    // Simular carga asíncrona para mejor UX
+    setTimeout(() => {
+        filteredDocuments = documents.filter(doc => {
+            // Filtrar por categoría
+            const categoryMatch = currentCategory === "all" || doc.category.includes(currentCategory);
+            
+            // Filtrar por país
+            const countryMatch = currentCountry === "all" || doc.countries.includes(currentCountry);
+            
+            // Filtrar por término de búsqueda
+            const searchMatch = !searchTerm || 
+                doc.name.toLowerCase().includes(searchTerm) || 
+                doc.description.toLowerCase().includes(searchTerm) ||
+                doc.category.some(cat => cat.toLowerCase().includes(searchTerm)) ||
+                doc.countries.some(country => countryNames[country].toLowerCase().includes(searchTerm));
+            
+            return categoryMatch && countryMatch && searchMatch;
+        });
+        
+        // Actualizar contador de resultados
+        const count = filteredDocuments.length;
+        resultsCounter.textContent = `${count} documento${count !== 1 ? 's' : ''} encontrado${count !== 1 ? 's' : ''}`;
+        
+        // Resetear a la primera página
+        currentPage = 1;
+        displayDocuments();
+        loadingSpinner.style.display = 'none';
+    }, 300);
+}
+
+// Función para mostrar documentos paginados
+function displayDocuments() {
+    documentList.innerHTML = '';  // Limpiar el contenido
+
+    // Calcular índices de documentos para la página actual
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    const pageDocuments = filteredDocuments.slice(startIndex, endIndex);
+
+    // Mostrar documentos de la página actual
+    if (pageDocuments.length > 0) {
+        pageDocuments.forEach(doc => {
+            documentList.innerHTML += generateDocumentHTML(doc);
+        });
+    } else {
+        documentList.innerHTML = `
+            <div class="alert alert-info">
+                No se encontraron documentos con los filtros aplicados.
+            </div>
+        `;
+    }
+
+    // Crear botones de paginación
+    createPaginationButtons();
+    
+    // Actualizar filtros activos
+    updateActiveFilters();
+}
+
+// Eventos para manejar los clics en las categorías
+categories.addEventListener("click", function(e) {
+    if (e.target.tagName === "LI") {
+        document.querySelectorAll("#categories .list-group-item").forEach(li => li.classList.remove("active"));
+        e.target.classList.add("active");
+        currentCategory = e.target.getAttribute("data-category");
+        filterDocuments();
+    }
+});
+
+// Eventos para manejar los clics en los países
+countries.addEventListener("click", function(e) {
+    if (e.target.tagName === "LI") {
+        document.querySelectorAll("#countries .list-group-item").forEach(li => li.classList.remove("active"));
+        e.target.classList.add("active");
+        currentCountry = e.target.getAttribute("data-country");
+        filterDocuments();
+    }
+});
+
+// Filtrar documentos al buscar
+searchInput.addEventListener("input", function() {
+    searchTerm = searchInput.value.toLowerCase();
+    filterDocuments();
+});
+
+// Copiar enlace de documento al portapapeles
+function copyLinkToClipboard(link) {
+    const tempInput = document.createElement("input");
+    document.body.appendChild(tempInput);
+    tempInput.value = link;
+    tempInput.select();
+    document.execCommand("copy");
+    document.body.removeChild(tempInput);
+
+    // Mostrar alerta de confirmación
+    copyAlert.style.display = "block";
+    setTimeout(() => {
+        copyAlert.style.display = "none";
+    }, 2000);
+}
+
+// Función para registrar eventos
+function registrarEvento(documento, accion) {
+    // En una implementación real, aquí se haría una llamada al servidor
+    console.log(`Evento registrado: ${accion} - ${documento}`);
+    
+    // Simulación de envío al servidor
+    fetch('guardar_registro.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ documento, accion }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Registro enviado:', data);
+    })
+    .catch(error => {
+        console.error('Error al enviar el registro:', error);
     });
 }
 
-function showDocumentDetails(doc) {
-    document.getElementById('documentTitle').innerText = doc.title;
-    document.getElementById('documentDescription').innerText = doc.description;
-    document.getElementById('documentImage').src = doc.image;
-
-    // Forzar descarga del archivo
-    document.getElementById('documentDownloadLink').onclick = (e) => {
-        e.preventDefault(); // Evitar que se abra en otra ventana
-        forceDownload(doc.link, doc.title);
-    };
-
-    document.getElementById('copyLinkButton').onclick = () => {
-        navigator.clipboard.writeText(doc.link).then(() => {
-            // Mostrar el toast de confirmación
-            copyToast.show();
-        }).catch(err => {
-            console.error('Error al copiar el enlace: ', err);
-        });
-    };
-
-    documentModal.show();
-}
-
-// Función para forzar la descarga
-function forceDownload(url, fileName) {
-    const a = document.createElement('a');
-    a.href = url;
-    a.setAttribute('download', fileName); // Asigna un nombre al archivo
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-}
-
-
-// Initialize the country list on page load
-loadCountries();
+// Inicializar el repositorio al cargar la página
+document.addEventListener('DOMContentLoaded', function() {
+    filterDocuments();
+    
+    // Configurar tooltips
+    $('[data-toggle="tooltip"]').tooltip();
+    
+    // Configurar viewer.js para imágenes
+    const gallery = new Viewer(document.getElementById('documents-list'), {
+        toolbar: {
+            zoomIn: 1,
+            zoomOut: 1,
+            oneToOne: 1,
+            reset: 1,
+            prev: 0,
+            play: 0,
+            next: 0,
+            rotateLeft: 1,
+            rotateRight: 1,
+            flipHorizontal: 1,
+            flipVertical: 1,
+        }
+    });
+});

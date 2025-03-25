@@ -12,6 +12,148 @@ body {
     object-fit: cover;
 }
 
+
+/* Estilos para la sección de landing */
+.cbm-landing {
+    background-color: #f8f9fa;
+    padding: 3rem 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.cbm-title {
+    color: #2c3e50;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.cbm-title i {
+    color: #27ae60;
+    margin-right: 10px;
+}
+
+.cbm-description {
+    color: #34495e;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.cbm-map {
+    border: 3px solid #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.cbm-map:hover {
+    transform: scale(1.03);
+}
+
+.cbm-plan {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    margin-top: 2rem;
+}
+
+.cbm-plan h2 {
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+.cbm-plan h2 i {
+    color: #27ae60;
+    margin-right: 10px;
+}
+
+.cbm-plan-description {
+    color: #7f8c8d;
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cbm-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 3px solid #27ae60;
+    text-align: center;
+}
+
+.cbm-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.cbm-card-icon {
+    font-size: 2.5rem;
+    color: #27ae60;
+    margin-bottom: 1rem;
+}
+
+.cbm-card h3 {
+    color: #2c3e50;
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.cbm-card p {
+    color: #7f8c8d;
+    font-size: 0.95rem;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .cbm-landing {
+        padding: 2rem 0;
+    }
+    
+    .cbm-title {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .cbm-map {
+        margin-top: 2rem;
+        max-width: 300px;
+    }
+}
+
+
+
+/* Estilos para la sección divisoria */
+.tools-divider {
+    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+    color: white;
+    padding: 3rem 0;
+    text-align: center;
+    position: relative;
+    margin-top: -1px; /* Para unir visualmente con la sección anterior */
+}
+
+.tools-divider h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 1rem 0 0.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+
+.tools-divider p {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 1.5rem;
+    opacity: 0.9;
+}
+
+
+
+
 /* Sección de filtros */
 .filter-section {
     margin-bottom: 2rem;

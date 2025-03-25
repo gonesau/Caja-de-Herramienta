@@ -92,7 +92,7 @@ function generateDocumentHTML(doc) {
                         ${doc.category.map(cat => `<span class="badge badge-primary">${cat}</span>`).join(' ')}
                     </div>
                     <div class="document-category mt-2">
-                        <span class="font-weight-bold">Países:</span> 
+                        <span class="font-weight-bold">País:</span> 
                         ${countryBadges}
                     </div>
                 </div>

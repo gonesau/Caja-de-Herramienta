@@ -34,17 +34,13 @@ const documents = [
 
 // Referencias a los elementos HTML
 const documentList = document.getElementById("documents-list");
-const categories = document.getElementById("categories");
-const countries = document.getElementById("countries");
+const categories = document.getElementById("categoriesCollapse");
+const countries = document.getElementById("countriesCollapse");
 const searchInput = document.getElementById("searchInput");
 const copyAlert = document.getElementById("copyAlert");
 const activeFilters = document.getElementById("activeFilters");
 const resultsCounter = document.getElementById("resultsCounter");
 const loadingSpinner = document.getElementById("loadingSpinner");
-const previewModal = new bootstrap.Modal(document.getElementById('previewModal'));
-const pdfPreview = document.getElementById('pdfPreview');
-const imagePreview = document.getElementById('imagePreview');
-const downloadBtn = document.getElementById('downloadBtn');
 
 // Elementos de paginación
 const paginationContainer = document.createElement("div");
@@ -102,13 +98,13 @@ function generateDocumentHTML(doc) {
                 </div>
                 <div class="col-md-3">
                     <div class="document-actions">
-                        <button class="btn btn-info" onclick="showPreview('${doc.file}', '${doc.type}', '${doc.name}')">
+                        <a href="${doc.file}" target="_blank" class="btn btn-info" onclick="registrarEvento('${doc.name}', 'Vista Previa')">
                             Vista Previa
-                        </button>
+                        </a>
                         <a href="${doc.file}" download class="btn btn-success" onclick="registrarEvento('${doc.name}', 'Descarga')">
                             Descargar
                         </a>
-                        <button class="btn btn-secondary" onclick="copyLinkToClipboard('${doc.file}')">
+                        <button class="btn btn-secondary" onclick="copyLinkToClipboard(event, '${doc.file}')">
                             Copiar enlace
                         </button>
                     </div>
@@ -116,61 +112,6 @@ function generateDocumentHTML(doc) {
             </div>
         </div>
     `;
-}
-
-// Función para mostrar la vista previa del documento
-function showPreview(file, type, docName) {
-    registrarEvento(docName, 'Vista Previa');
-    
-    // Configurar el botón de descarga
-    downloadBtn.href = file;
-    downloadBtn.setAttribute('download', file.split('/').pop());
-    
-    // Mostrar el modal
-    previewModal.show();
-    
-    // Limpiar vista previa anterior
-    pdfPreview.innerHTML = '';
-    imagePreview.style.display = 'none';
-    
-    // Configurar el título del modal
-    document.getElementById('previewModalLabel').textContent = `Vista Previa: ${docName}`;
-    
-    if (type === 'pdf') {
-        // Mostrar spinner de carga
-        pdfPreview.innerHTML = '<div class="spinner-border text-primary" role="status"><span class="sr-only">Cargando...</span></div>';
-        
-        // Cargar PDF usando PDF.js
-        pdfjsLib.getDocument(file).promise.then(function(pdf) {
-            // Limpiar el contenedor
-            pdfPreview.innerHTML = '';
-            
-            // Renderizar la primera página
-            pdf.getPage(1).then(function(page) {
-                const viewport = page.getViewport({ scale: 1.0 });
-                const canvas = document.createElement('canvas');
-                const context = canvas.getContext('2d');
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
-                
-                pdfPreview.appendChild(canvas);
-                
-                page.render({
-                    canvasContext: context,
-                    viewport: viewport
-                });
-            });
-            
-            // Opcional: Renderizar más páginas si se desea
-        }).catch(function(error) {
-            pdfPreview.innerHTML = '<p class="text-danger">No se pudo cargar el PDF. Por favor, descárguelo para verlo.</p>';
-            console.error('Error al cargar PDF:', error);
-        });
-    } else {
-        // Mostrar imagen directamente
-        imagePreview.src = file;
-        imagePreview.style.display = 'block';
-    }
 }
 
 // Función para crear botones de paginación
@@ -361,7 +302,7 @@ function displayDocuments() {
 // Eventos para manejar los clics en las categorías
 categories.addEventListener("click", function(e) {
     if (e.target.tagName === "LI") {
-        document.querySelectorAll("#categories .list-group-item").forEach(li => li.classList.remove("active"));
+        document.querySelectorAll("#categoriesCollapse .list-group-item").forEach(li => li.classList.remove("active"));
         e.target.classList.add("active");
         currentCategory = e.target.getAttribute("data-category");
         filterDocuments();
@@ -371,7 +312,7 @@ categories.addEventListener("click", function(e) {
 // Eventos para manejar los clics en los países
 countries.addEventListener("click", function(e) {
     if (e.target.tagName === "LI") {
-        document.querySelectorAll("#countries .list-group-item").forEach(li => li.classList.remove("active"));
+        document.querySelectorAll("#countriesCollapse .list-group-item").forEach(li => li.classList.remove("active"));
         e.target.classList.add("active");
         currentCountry = e.target.getAttribute("data-country");
         filterDocuments();
@@ -385,7 +326,9 @@ searchInput.addEventListener("input", function() {
 });
 
 // Copiar enlace de documento al portapapeles
-function copyLinkToClipboard(link) {
+function copyLinkToClipboard(event, link) {
+    event.preventDefault();
+    
     const tempInput = document.createElement("input");
     document.body.appendChild(tempInput);
     tempInput.value = link;
@@ -393,11 +336,26 @@ function copyLinkToClipboard(link) {
     document.execCommand("copy");
     document.body.removeChild(tempInput);
 
+    // Posicionar la alerta en el centro de la pantalla visible
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const centerPosition = scrollTop + (window.innerHeight / 2);
+    copyAlert.style.top = `${centerPosition}px`;
+    
     // Mostrar alerta de confirmación
     copyAlert.style.display = "block";
+    copyAlert.style.opacity = "0";
+    
+    // Trigger reflow para reiniciar la animación
+    void copyAlert.offsetWidth;
+    
+    copyAlert.style.opacity = "1";
+    
     setTimeout(() => {
-        copyAlert.style.display = "none";
-    }, 2000);
+        copyAlert.style.opacity = "0";
+        setTimeout(() => {
+            copyAlert.style.display = "none";
+        }, 300);
+    }, 1700);
 }
 
 // Función para registrar eventos
@@ -428,6 +386,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Configurar tooltips
     $('[data-toggle="tooltip"]').tooltip();
+    
+    // Configurar acordeones para los filtros
+    $('.filter-header').click(function() {
+        $(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+    });
     
     // Configurar viewer.js para imágenes
     const gallery = new Viewer(document.getElementById('documents-list'), {

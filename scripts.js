@@ -325,38 +325,58 @@ searchInput.addEventListener("input", function() {
     filterDocuments();
 });
 
-// Copiar enlace de documento al portapapeles
+
+
+
+// Función para copiar enlace al portapapeles
 function copyLinkToClipboard(event, link) {
     event.preventDefault();
     
+    // Crear elemento temporal para copiar
     const tempInput = document.createElement("input");
-    document.body.appendChild(tempInput);
     tempInput.value = link;
+    document.body.appendChild(tempInput);
     tempInput.select();
-    document.execCommand("copy");
-    document.body.removeChild(tempInput);
-
-    // Posicionar la alerta en el centro de la pantalla visible
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const centerPosition = scrollTop + (window.innerHeight / 2);
-    copyAlert.style.top = `${centerPosition}px`;
     
-    // Mostrar alerta de confirmación
-    copyAlert.style.display = "block";
-    copyAlert.style.opacity = "0";
-    
-    // Trigger reflow para reiniciar la animación
-    void copyAlert.offsetWidth;
-    
-    copyAlert.style.opacity = "1";
-    
-    setTimeout(() => {
-        copyAlert.style.opacity = "0";
-        setTimeout(() => {
-            copyAlert.style.display = "none";
-        }, 300);
-    }, 1700);
+    try {
+        // Intentar copiar al portapapeles
+        const successful = document.execCommand("copy");
+        document.body.removeChild(tempInput);
+        
+        if (successful) {
+            showCopyAlert(event);
+        } else {
+            console.error("Falló al copiar el enlace");
+        }
+    } catch (err) {
+        console.error("Error al copiar:", err);
+        document.body.removeChild(tempInput);
+    }
 }
+
+// Función para mostrar alerta de copiado
+function showCopyAlert(event) {
+    // Obtener posición del botón clickeado
+    const buttonRect = event.currentTarget.getBoundingClientRect();
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    // Posicionar la alerta justo encima del botón
+    copyAlert.style.top = `${buttonRect.top + scrollTop - 50}px`;
+    copyAlert.style.left = `${buttonRect.left + buttonRect.width/2}px`;
+    copyAlert.style.transform = 'translateX(-50%)';
+    
+    // Resetear animación
+    copyAlert.style.display = 'none';
+    void copyAlert.offsetWidth; // Trigger reflow
+    copyAlert.style.display = 'block';
+    
+    // Ocultar después de 2 segundos
+    setTimeout(() => {
+        copyAlert.style.display = 'none';
+    }, 2000);
+}
+
+
 
 // Función para registrar eventos
 function registrarEvento(documento, accion) {

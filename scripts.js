@@ -6,18 +6,27 @@ const documents = [
     { 
         name: "Test 1", 
         file: "docs/doc1.pdf", 
-        category: ["Institucional"],
-        countries: ["MX", "GT"],
-        image: "img/guatemala.png",
+        category: ["Institucional", "Socioambiental"],
+        countries: ["GT"],
+        image: "img/thumbnails/1.jpg",
         description: "Acta que Institucionaliza el Proyecto Mesoamérica firmada en 2009 por los países miembros.",
         type: "pdf"
     },    
     { 
         name: "Test 2", 
         file: "docs/doc2.pdf", 
+        category: ["Económico"],
+        countries: ["MX"],
+        image: "img/thumbnails/2.jpg",
+        description: "Acta que Institucionaliza el Proyecto Mesoamérica firmada en 2009 por los países miembros.",
+        type: "pdf"
+    },
+    { 
+        name: "Test 3", 
+        file: "docs/doc3.pdf", 
         category: ["Institucional"],
-        countries: ["MX", "GT"],
-        image: "img/guatemala.png",
+        countries: ["SV"],
+        image: "img/thumbnails/3.jpg",
         description: "Acta que Institucionaliza el Proyecto Mesoamérica firmada en 2009 por los países miembros.",
         type: "pdf"
     },
@@ -61,7 +70,8 @@ const countryNames = {
     "CR": "Costa Rica",
     "PA": "Panamá",
     "CO": "Colombia",
-    "RD": "Rep. Dominicana"
+    "RD": "República Dominicana",
+    "BZ": "Belice"
 };
 
 // Función para generar el HTML dinámico de un documento
